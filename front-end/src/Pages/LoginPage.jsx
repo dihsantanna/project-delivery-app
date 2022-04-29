@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
+import './LoginPage.css';
 
 function LoginPage() {
   const minPasswordLength = 6;
@@ -19,12 +20,12 @@ function LoginPage() {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <div>
+    <div className="main">
       <h1>Login</h1>
       <form onSubmit={ handleSubmit(onSubmit) }>
         <div>
-          <label htmlFor="email-input">
-            Login
+          <label htmlFor="email-input" className="form-label">
+            <p>Login</p>
             <input
               { ...register('email') }
               id="email-input"
@@ -34,8 +35,8 @@ function LoginPage() {
           </label>
         </div>
         <div>
-          <label htmlFor="password-input">
-            Senha
+          <label htmlFor="password-input" className="form-label">
+            <p>Senha</p>
             <input
               { ...register('password') }
               id="password-input"
@@ -48,12 +49,14 @@ function LoginPage() {
           type="submit"
           data-testid="common_login__button-login"
           disabled={ errors.email || errors.password }
+          className="button-forms-login"
         >
           LOGIN
         </button>
         <button
           type="button"
           data-testid="common_login__button-register"
+          className="button-forms-register"
         >
           Ainda não tenho conta
         </button>
