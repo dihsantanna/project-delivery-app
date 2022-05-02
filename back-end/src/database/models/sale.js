@@ -1,4 +1,4 @@
-exports.Sale = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Sale = sequelize.define('Sale', {
     user_id: DataTypes.INTEGER,
     seller_id: DataTypes.INTEGER,

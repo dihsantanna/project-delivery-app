@@ -1,0 +1,29 @@
+const jwt = require('jsonwebtoken');
+const { StatusCodes: code } = require('http-status-codes');
+const { readFileSync } = require('fs');
+const md5 = require('md5');
+const { User } = require('../../database/models');
+
+const secret = readFileSync('jwt.evaluation.key', 'utf8');
+
+const login = async ({ email, password }) => {
+  const hash = md5(password);
+  console.log(User);
+  const user = await User.findOne({ where: { email } });
+
+  if (!user) {
+    return { code: code.UNAUTHORIZED, message: 'Email does not exist.' };
+  }
+  if (user.password !== hash) {
+    return { code: code.UNAUTHORIZED, message: 'Invalid password.' };
+  }
+  const response = {
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
+
+  return { code: code.OK, message: { ...response, token: jwt.sign(response, secret) } };
+};
+
+module.exports = login;
