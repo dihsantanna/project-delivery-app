@@ -11,8 +11,8 @@ form {
 	flex-direction: column;
 	background-color: #EAF1EF;
 	align-items: center;
-	width: 60vh;
-	height: 45vh;
+	width: 50vh;
+	height: 46vh;
 }
 
 .form-label {
@@ -47,7 +47,7 @@ form {
 
 .button-forms-login {
 	width: 39vh;
-	height: 7vh;
+	height: 9vh;
 	left: 646px;
 	top: 674px;
 	border-radius: 5px;
@@ -64,7 +64,7 @@ form {
 
 .button-forms-register {
 	width: 39vh;
-	height: 7vh;
+	height: 9vh;
 	left: 646px;
 	top: 674px;
 	border-radius: 5px;
