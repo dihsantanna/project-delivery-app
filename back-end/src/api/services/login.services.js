@@ -12,11 +12,12 @@ const login = async ({ email, password }) => {
   const user = await User.findOne({ where: { email } });
 
   if (!user) {
-    return { code: code.UNAUTHORIZED, message: 'Email does not exist.' };
+    return { code: code.UNAUTHORIZED, message: { message: 'Email not registered.' } };
   }
   if (user.password !== hash) {
-    return { code: code.UNAUTHORIZED, message: 'Invalid password.' };
+    return { code: code.UNAUTHORIZED, message: { message: 'Invalid password.' } };
   }
+
   const response = {
     name: user.name,
     email: user.email,
