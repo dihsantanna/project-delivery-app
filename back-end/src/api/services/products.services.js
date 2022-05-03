@@ -1,10 +1,10 @@
 const { StatusCodes: code } = require('http-status-codes');
-const { User } = require('../../database/models');
+const { Product } = require('../../database/models');
 
 const getAll = async () => {
   try {
-  const users = await User.findAll();
-  return { code: code.OK, message: users };
+  const products = await Product.findAll();
+  return { code: code.OK, message: products };
   } catch (error) {
     return { code: code.INTERNAL_SERVER_ERROR, message: error };
   }
@@ -12,8 +12,8 @@ const getAll = async () => {
 
 const getById = async (id) => {
   try {
-    const user = await User.findOne({ where: { id } });
-    return { code: code.OK, message: user };
+    const product = await Product.findOne({ where: { id } });
+    return { code: code.OK, message: product };
   } catch (error) {
     return { code: code.NOT_FOUND, message: error };
   }
