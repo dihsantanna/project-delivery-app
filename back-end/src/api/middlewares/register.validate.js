@@ -10,7 +10,7 @@ const schemaRegister = Joi.object({
 const validateRegister = (req, res, next) => {
   const { body } = req;
   const { error } = schemaRegister.validate(body);
-  if (error) return res.status(Code.BAD_REQUEST).json({ error: error.message });
+  if (error) return res.status(Code.BAD_REQUEST).json({ message: error.message });
 
   next();
 };
