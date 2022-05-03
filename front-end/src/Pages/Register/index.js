@@ -33,11 +33,14 @@ export default function Register() {
       name: username,
       email,
       password,
-    }).then(() => {
+    }).then((res) => {
       setErrorMessage({
         show: 'disabled',
         message: '',
       });
+      console.log(res);
+      const { token } = res.data;
+      window.localStorage.setItem('token', token);
       history.push('/customer/products');
     })
       .catch((err) => {
