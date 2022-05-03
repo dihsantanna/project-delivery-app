@@ -6,12 +6,11 @@ const { User } = require('../../database/models');
 
 const secret = readFileSync('jwt.evaluation.key', 'utf8');
 
-const createUser = async (data) => {
+const createUser = async ({ name, email, password }) => {
   try {
-    const { name, email, password } = data;
     const hash = md5(password);
-    const userEmailExists = await User.findOne({ where: { email } });
-    const userNameExists = await User.findOne({ where: { name } });
+    const [userEmailExists, userNameExists] = await Promise
+      .all([User.findOne({ where: { email } }), User.findOne({ where: { name } })]);
     if (userEmailExists || userNameExists) {
       return {
         code: 409,
@@ -30,4 +29,4 @@ const createUser = async (data) => {
 
 module.exports = {
   createUser,
-}
+};
