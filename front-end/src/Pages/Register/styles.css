@@ -46,8 +46,8 @@ label > p {
 
 .register-alert__enabled {
   color: red;
-  margin: 15px;
   font-weight: 700;
+  margin: 15px;
 }
 
 
