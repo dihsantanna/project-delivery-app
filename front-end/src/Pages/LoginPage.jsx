@@ -6,22 +6,31 @@ import './LoginPage.css';
 function LoginPage() {
   const history = useHistory();
   const minPasswordLength = 6;
-  const [email, setEmail] = useState('');
+  const [inputEmail, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
+  const saveToLocalStore = (userLogin) => {
+    const newData = userLogin.data;
+    const { token, name, email, role } = newData;
+    const newUser = { name, email, role, token };
+    localStorage.setItem('User', JSON.stringify(newUser));
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    const data = { email, password };
-    const login = await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/login`,
-      data,
-    }).catch((error) => setErrorMsg(error.message));
-    if (login) {
-      const path = '/products';
-      history.push(path);
+    try {
+      const data = { email: inputEmail, password };
+      const user = await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/login`,
+        data,
+      });
+      saveToLocalStore(user);
+      history.push('/products');
+    } catch (error) {
+      setErrorMsg(error.response.data.message);
     }
   };
 
@@ -53,7 +62,7 @@ function LoginPage() {
               id="email-input"
               data-testid="common_login__input-email"
               onChange={ handleClick }
-              value={ email }
+              value={ inputEmail }
             />
           </label>
         </div>
@@ -73,7 +82,7 @@ function LoginPage() {
           type="submit"
           data-testid="common_login__button-login"
           disabled={
-            email.length <= 0 || !isValidEmail
+            inputEmail.length <= 0 || !isValidEmail
             || password.length <= minPasswordLength - 1
           }
           className="button-forms-login"
@@ -90,7 +99,7 @@ function LoginPage() {
         </button>
 
       </form>
-      {!isValidEmail && email.length > 0
+      {!isValidEmail && inputEmail.length > 0
        && (
          <span data-testid="common_login__element-invalid-email">
            Email must be valid
