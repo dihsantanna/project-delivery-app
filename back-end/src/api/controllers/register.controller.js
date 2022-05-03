@@ -1,11 +1,10 @@
-const loginService = require('../services/register.service');
+const registerService = require('../services/register.service');
 
-const createUser = async (data) => {
-  const { body } = data;
-  const { code, message } = await loginService.createUser(body);
+const createUser = async (req, res) => {
+  const { body } = req;
+  const { code, message } = await registerService.createUser(body);
+
   return res.status(code).json(message);
 };
 
-module.exports = {
-  createUser,
-}
+module.exports = createUser;
