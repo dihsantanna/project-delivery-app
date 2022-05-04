@@ -1,7 +1,7 @@
 const { StatusCodes: code } = require('http-status-codes');
 const { User } = require('../../database/models');
 
-const findAll = async () => {
+const getAll = async () => {
   try {
     const users = await User.findAll();
     const sellers = users.filter((user) => user.role === 'seller');
@@ -12,5 +12,5 @@ const findAll = async () => {
 };
 
 module.exports = {
-  findAll,
+  getAll,
 };
