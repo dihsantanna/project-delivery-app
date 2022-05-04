@@ -1,40 +1,70 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { joiResolver } from '@hookform/resolvers/joi';
-import Joi from 'joi';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import './LoginPage.css';
 
 function LoginPage() {
+  const history = useHistory();
   const minPasswordLength = 6;
-  const [email, setEmail] = useState('');
+  const [inputEmail, setEmail] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(false);
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const loginSchema = Joi.object({
-    email: Joi.string().email({ tlds: { allow: false } }).required(),
-    password: Joi.string().min(minPasswordLength).required(),
-  });
+  const saveToLocalStore = (userLogin) => {
+    const newData = userLogin.data;
+    const { token, name, email, role } = newData;
+    const newUser = { name, email, role, token };
+    localStorage.setItem('User', JSON.stringify(newUser));
+  };
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: joiResolver(loginSchema),
-    reValidateMode: 'onChange',
-  });
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = { email: inputEmail, password };
+      const user = await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/login`,
+        data,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+      });
+      saveToLocalStore(user);
+      history.push('/customer/products');
+    } catch (error) {
+      console.log(error);
+      setErrorMsg('Usuario não encontrado');
+    }
+  };
 
-  const onSubmit = (data) => console.log(data);
+  const onRegisterClick = () => {
+    const path = '/register';
+    history.push(path);
+  };
+
+  const validateEmail = (value) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(value);
+  };
+
+  const handleClick = (e) => {
+    const { target } = e;
+    setEmail(target.value);
+    const validate = validateEmail(target.value);
+    setIsValidEmail(validate);
+  };
 
   return (
     <div className="main">
       <h1>Login</h1>
-      <form onSubmit={ handleSubmit(onSubmit) }>
+      <form onSubmit={ onSubmit }>
         <div>
           <label htmlFor="email-input" className="form-label">
             <p>Login</p>
             <input
-              { ...register('email') }
               id="email-input"
               data-testid="common_login__input-email"
-              aria-invalid={ errors.email ? 'true' : 'false' }
-              onChange={ (e) => setEmail(e.target.value) }
-              value={ email }
+              onChange={ handleClick }
+              value={ inputEmail }
             />
           </label>
         </div>
@@ -42,7 +72,6 @@ function LoginPage() {
           <label htmlFor="password-input" className="form-label">
             <p>Senha</p>
             <input
-              { ...register('password') }
               id="password-input"
               data-testid="common_login__input-password"
               type="password"
@@ -55,9 +84,7 @@ function LoginPage() {
           type="submit"
           data-testid="common_login__button-login"
           disabled={
-            errors.email
-            || errors.password
-            || email.length <= 0
+            inputEmail.length <= 0 || !isValidEmail
             || password.length <= minPasswordLength - 1
           }
           className="button-forms-login"
@@ -68,17 +95,17 @@ function LoginPage() {
           type="button"
           data-testid="common_login__button-register"
           className="button-forms-register"
+          onClick={ onRegisterClick }
         >
           Ainda não tenho conta
         </button>
 
       </form>
-      {errors.email
-       && (
-         <span data-testid="common_login__element-invalid-email">
-           Email must be valid
-         </span>
-       )}
+      {errorMsg
+      && (
+        <span data-testid="common_login__element-invalid-email">
+          {errorMsg}
+        </span>)}
     </div>
   );
 }
