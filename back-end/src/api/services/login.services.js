@@ -8,7 +8,6 @@ const secret = readFileSync('jwt.evaluation.key', 'utf8');
 
 const login = async ({ email, password }) => {
   const hash = md5(password);
-  console.log(User);
   const user = await User.findOne({ where: { email } });
 
   if (!user) {
