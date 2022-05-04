@@ -26,10 +26,12 @@ function LoginPage() {
         method: 'post',
         url: `${process.env.REACT_APP_API_URL}/login`,
         data,
+        headers: {'Access-Control-Allow-Origin': '*'}
       });
       saveToLocalStore(user);
-      history.push('/products');
+      history.push('/customer/products');
     } catch (error) {
+      console.log(error);
       setErrorMsg(error.response.data.message);
     }
   };
