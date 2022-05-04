@@ -26,7 +26,7 @@ function LoginPage() {
         method: 'post',
         url: `${process.env.REACT_APP_API_URL}/login`,
         data,
-        headers: {'Access-Control-Allow-Origin': '*'}
+        headers: { 'Access-Control-Allow-Origin': '*', }
       });
       saveToLocalStore(user);
       history.push('/customer/products');

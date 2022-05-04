@@ -10,7 +10,7 @@ function App() {
     <main>
       <Switch>
         <Route exact path="/login" component={ LoginPage } />
-        <Route exact path="/" >
+        <Route exact path="/">
           {history.push('/login')}
         </Route>
       </Switch>
