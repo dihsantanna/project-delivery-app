@@ -12,7 +12,7 @@ const login = async ({ email, password }) => {
   const user = await User.findOne({ where: { email } });
 
   if (!user) {
-    return { code: code.UNAUTHORIZED, message: { message: 'Email not registered.' } };
+    return { code: code.NOT_FOUND, message: { message: 'Email not registered.' } };
   }
   if (user.password !== hash) {
     return { code: code.UNAUTHORIZED, message: { message: 'Invalid password.' } };
