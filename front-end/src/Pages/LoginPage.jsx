@@ -32,7 +32,7 @@ function LoginPage() {
       history.push('/customer/products');
     } catch (error) {
       console.log(error);
-      setErrorMsg(error.response.data.message);
+      setErrorMsg('Usuario não encontrado');
     }
   };
 
@@ -101,12 +101,6 @@ function LoginPage() {
         </button>
 
       </form>
-      {!isValidEmail && inputEmail.length > 0
-       && (
-         <span data-testid="common_login__element-invalid-email">
-           Email must be valid
-         </span>
-       )}
       {errorMsg
       && (
         <span data-testid="common_login__element-invalid-email">
