@@ -57,29 +57,25 @@ function LoginPage() {
     <div className="main">
       <h1>Login</h1>
       <form onSubmit={ onSubmit }>
-        <div>
-          <label htmlFor="email-input" className="form-label">
-            <p>Login</p>
-            <input
-              id="email-input"
-              data-testid="common_login__input-email"
-              onChange={ handleClick }
-              value={ inputEmail }
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password-input" className="form-label">
-            <p>Senha</p>
-            <input
-              id="password-input"
-              data-testid="common_login__input-password"
-              type="password"
-              onChange={ (e) => setPassword(e.target.value) }
-              value={ password }
-            />
-          </label>
-        </div>
+        <label htmlFor="email-input" className="form-label">
+          <p>Login</p>
+          <input
+            id="email-input"
+            data-testid="common_login__input-email"
+            onChange={ handleClick }
+            value={ inputEmail }
+          />
+        </label>
+        <label htmlFor="password-input" className="form-label">
+          <p>Senha</p>
+          <input
+            id="password-input"
+            data-testid="common_login__input-password"
+            type="password"
+            onChange={ (e) => setPassword(e.target.value) }
+            value={ password }
+          />
+        </label>
         <button
           type="submit"
           data-testid="common_login__button-login"
