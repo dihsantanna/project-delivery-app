@@ -1,6 +1,7 @@
 import Axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import registerValidate from '../validations/register.validate';
 import './RegisterPage.css';
 
 export default function Register() {
@@ -8,12 +9,18 @@ export default function Register() {
     show: 'disabled',
     message: '',
   });
-
   const [newUser, setNewUser] = useState({
     username: '',
     email: '',
     password: '',
   });
+  const [dataIsValid, setDataIsValid] = useState(false);
+
+  useEffect(() => {
+    const { error } = registerValidate.validate(newUser);
+    if (!error) return setDataIsValid(true);
+    return setDataIsValid(false);
+  }, [newUser]);
 
   const { username, email, password } = newUser;
 
@@ -21,7 +28,6 @@ export default function Register() {
 
   function setUserPayloadByInput({ target }) {
     const { name, value } = target;
-
     setNewUser((prevState) => ({
       ...prevState,
       [name]: value,
@@ -100,6 +106,7 @@ export default function Register() {
           />
         </label>
         <button
+          disabled={ !dataIsValid }
           className="register_button"
           data-testid="common_register__button-register"
           type="button"

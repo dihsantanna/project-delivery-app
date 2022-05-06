@@ -19,8 +19,8 @@ const createUser = async ({ name, email, password }) => {
     }
     const role = 'customer';
     const token = jwt.sign({ name, email, role }, secret, { expiresIn: '1d' });
-    const user = await User.create({ name, email, password: hash, role });
-    const newUser = { code: Code.CREATED, message: { user, token } };
+    await User.create({ name, email, password: hash, role });
+    const newUser = { code: Code.CREATED, message: { name, email, role, token } };
     return newUser;
   } catch (error) {
     return { code: Code.INTERNAL_SERVER_ERROR, message: error.message };
