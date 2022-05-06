@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import './styles.css';
+import './RegisterPage.css';
 
 export default function Register() {
   const [errorMessage, setErrorMessage] = useState({
@@ -38,9 +38,7 @@ export default function Register() {
         show: 'disabled',
         message: '',
       });
-      console.log(res);
-      const { token } = res.data;
-      window.localStorage.setItem('token', token);
+      window.localStorage.setItem('user', JSON.stringify(res.data));
       history.push('/customer/products');
     })
       .catch((err) => {

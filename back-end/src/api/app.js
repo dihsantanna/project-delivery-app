@@ -14,6 +14,7 @@ app.use(cors());
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
 app.use('/products', productsRoute);
+app.use('/images', express.static('public'));
 app.use('/sellers', sellersRoute);
 
 module.exports = app;

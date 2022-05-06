@@ -3,7 +3,8 @@ import './App.css';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
 import LoginPage from './Pages/LoginPage';
-import Register from './Pages/Register';
+import RegisterPage from './Pages/RegisterPage';
+import ProductsPage from './Pages/ProductsPage';
 
 function App() {
   const history = useHistory();
@@ -11,9 +12,10 @@ function App() {
     <main>
       <Switch>
         <Route exact path="/login" component={ LoginPage } />
-        <Route exact path="/register" component={ Register } />
+        <Route exact path="/register" component={ RegisterPage } />
+        <Route exact path="/customer/products" component={ ProductsPage } />
         <Route exact path="/">
-          {history.push('/login')}
+          {history.location.pathname === '/' ? history.push('/login') : null}
         </Route>
       </Switch>
     </main>

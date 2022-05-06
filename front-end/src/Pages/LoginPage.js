@@ -15,7 +15,7 @@ function LoginPage() {
     const newData = userLogin.data;
     const { token, name, email, role } = newData;
     const newUser = { name, email, role, token };
-    localStorage.setItem('User', JSON.stringify(newUser));
+    localStorage.setItem('user', JSON.stringify(newUser));
   };
 
   const onSubmit = async (e) => {
