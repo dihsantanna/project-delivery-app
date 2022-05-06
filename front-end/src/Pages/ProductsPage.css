@@ -1,0 +1,29 @@
+.main-product-page {
+  padding: 0 0 3.5rem;
+  position: relative;
+  width: 100vw;
+}
+
+.grade-products {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.see-cart-btn {
+  background-color: #036b52;
+  border: none;
+  border-radius: 0.5rem;
+  bottom: 1rem;
+  color: #f2fffc;
+  cursor: pointer;
+  font-size: 1.5rem;
+  outline: 0;
+  padding: 0.6rem;
+  position: fixed;
+  right: 0.25rem;
+  text-align: center;
+  text-decoration: none;
+  width: calc(100vw / 5);
+}

@@ -1,0 +1,57 @@
+.navBar {
+  color: #f2fffc;
+  display: flex;
+  font-weight: 600;
+  height: 4rem;
+  margin-bottom: 1rem;
+  padding: 0;
+  width: 100vw;
+}
+
+.navBar button {
+  border: none;
+  color: #f2fffc;
+  cursor: pointer;
+  outline: 0;
+}
+
+.nav-qd-1 {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  width: calc(100vw * 2 / 3);
+}
+
+.nav-qd-1 button {
+  background-color: #036b52;
+  flex-grow: 1;
+}
+
+.vol {
+  background-color: #036b52;
+  flex-grow: 1;
+}
+
+.nav-qd-2 {
+  display: flex;
+  margin: 0;
+  width: calc(100vw / 3);
+}
+
+.nav-qd-2 div {
+  align-items: center;
+  background-color: #421981;
+  display: flex;
+  justify-content: center;
+  width: calc(100% * 2 / 3);
+}
+
+.nav-qd-2 button {
+  background-color: #056cf9;
+  width: calc(100% / 3);
+}
+
+.nav-qd-1 button:disabled {
+  background-color: #2fc18c;
+  color: #001813;
+}

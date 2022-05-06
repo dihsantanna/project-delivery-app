@@ -1,0 +1,79 @@
+.product-card {
+  box-shadow: 0 0.15rem 0.2rem 0.2rem #797676;
+  display: flex;
+  flex-direction: column;
+  height: 56vh;
+  margin: 1rem 0;
+  position: relative;
+  width: 21vw;
+}
+
+.productCard-price {
+  color: #001813;
+  font-size: large;
+  font-weight: 700;
+  padding: 0.75rem;
+  position: absolute;
+  width: 5rem;
+}
+
+.image-container {
+  margin: 0 auto;
+  max-height: calc(100% * 3 / 4);
+  max-width: 100%;
+}
+
+.productCard-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: fill;
+}
+
+.info-container {
+  background-color: #eaf1ef;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% / 4);
+  justify-content: space-between;
+  padding: 0.5rem 0 1.25rem;
+  text-align: center;
+}
+
+.productCard-title {
+  color: #001813;
+  font-weight: 500;
+}
+
+.productCard-btn-container button {
+  background-color: #036b52;
+  border: solid 0.1rem black;
+  box-shadow: 0 0 0 0;
+  color: #f2fffc;
+  cursor: pointer;
+  font-size: larger;
+  font-weight: 700;
+  height: 1.9rem;
+  outline: 0;
+  width: 1.9rem;
+}
+
+.productCard-btn-container input {
+  background-color: white;
+  border: solid 0.1rem black;
+  box-shadow: 0 0 0 0;
+  font-size: larger;
+  font-weight: 400;
+  height: 1.7rem;
+  outline: 0;
+  padding: 0;
+  text-align: center;
+  width: 1.9rem;
+}
+
+.productCard-btn-add {
+  border-radius: 0 0.4rem 0.4rem 0;
+}
+
+.productCard-btn-rm {
+  border-radius: 0.4rem 0 0 0.4rem;
+}
