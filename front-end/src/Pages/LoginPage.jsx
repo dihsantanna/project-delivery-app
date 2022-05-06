@@ -93,7 +93,7 @@ function LoginPage() {
           className="button-forms-register"
           onClick={ onRegisterClick }
         >
-          Ainda não tenho conta
+          Ainda não tenho conta 
         </button>
 
       </form>
