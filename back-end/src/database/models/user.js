@@ -7,16 +7,16 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-    tableName: 'users'
+    tableName: 'users',
   })
 
   User.associate = (models) => {
     User.hasMany(models.Sale,
-      { foreignKey: 'user_id', as: 'userId' }
+      { foreignKey: 'user_id', as: 'user_sale' }
       )
 
     User.hasMany(models.Sale,
-      { foreignKey: 'seller_id', as: 'sellerId' }
+      { foreignKey: 'seller_id', as: 'user_seller' }
       )
   }
 

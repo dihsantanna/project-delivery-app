@@ -46,7 +46,7 @@ module.exports = {
         type: Sequelize.STRING(50)
       },
       saleDate: {
-        defaultValue: new Date().UTC,
+        defaultValue: new Date(Date.now()),
         field: 'sale_date',
         type: Sequelize.DATE
       },
