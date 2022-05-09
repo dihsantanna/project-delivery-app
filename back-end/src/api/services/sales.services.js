@@ -18,7 +18,6 @@ const create = async (data) => {
     totalPrice: data.totalPrice,
     deliveryAddress: data.deliveryAddress,
     deliveryNumber: data.deliveryNumber,
-    saleDate: new Date(Date.now()).toUTCString(),
     status: data.status,
   };
   try {

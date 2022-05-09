@@ -1,4 +1,7 @@
 'use strict';
+
+const moment = require('moment');
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('sales', {
@@ -46,7 +49,7 @@ module.exports = {
         type: Sequelize.STRING(50)
       },
       saleDate: {
-        defaultValue: new Date(Date.now()),
+        defaultValue: moment.utc().format('YYYY-MM-DD HH:mm:ss'),
         field: 'sale_date',
         type: Sequelize.DATE
       },
