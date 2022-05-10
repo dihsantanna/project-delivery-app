@@ -19,7 +19,7 @@ function NavBar({ page }) {
           disabled={ page === 'produtos' }
           type="button"
           data-testid="customer_products__element-navbar-link-products"
-          onClick={ () => history.push('/products') }
+          onClick={ () => history.push('/customer/products') }
         >
           PRODUTOS
         </button>
@@ -28,7 +28,7 @@ function NavBar({ page }) {
           disabled={ page !== 'produtos' }
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
-          onClick={ () => history.push('/orders') }
+          onClick={ () => history.push('/customer/orders') }
         >
           MEUS PEDIDOS
         </button>
