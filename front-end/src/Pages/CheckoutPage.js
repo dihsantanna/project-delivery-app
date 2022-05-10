@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../Components/NavBar';
 import TableProducts from '../Components/TableProductsCheckout';
 import DetailsDelivery from '../Components/DetailsDelivery';
+import toBRL from '../helpers/toBRL';
 
 export default function CheckoutPage() {
   const [products, setProducts] = useState([]);
 
   const getProducts = () => {
     const product = JSON.parse(localStorage.getItem('carrinho'));
-    setProducts(product);
+    setProducts(product.sort((a, b) => a.id - b.id));
   };
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function CheckoutPage() {
   const totalOrder = () => {
     let result = 0;
     products.forEach((value) => { result += value.total; });
-    return Number(result).toFixed(2);
+    return result;
   };
 
   const removeItem = (id) => {
@@ -37,9 +38,12 @@ export default function CheckoutPage() {
         <div>
           <TableProducts products={ products } onClick={ removeItem } />
         </div>
-        <span data-testid="customer_checkout__element-order-total-price">
-          {`Total: R$ ${totalOrder()}`}
-        </span>
+        <div>
+          Preço Total: R$
+          <span data-testid="customer_checkout__element-order-total-price">
+            {toBRL(totalOrder())}
+          </span>
+        </div>
         <DetailsDelivery />
       </div>
     </div>
