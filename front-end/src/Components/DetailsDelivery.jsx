@@ -6,9 +6,17 @@ function DetailsDelivery() {
   const history = useHistory();
   const [sellers, setSellers] = useState([]);
 
+  const getToken = () => {
+    const token = localStorage.getItem('token');
+    return token;
+  };
+
   const getSeller = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/sellers`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/sellers`,
+        { headers: { Authorization: getToken() } },
+      );
       if (!data) return false;
       setSellers(data);
     } catch (error) {
