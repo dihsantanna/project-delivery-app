@@ -19,7 +19,7 @@ export default function TableProducts({ products, onClick }) {
           <tr className="table-products-row" key={ `Produto: ${index}` }>
             <td
               data-testid={
-                `customer_order_details__element-order-table-item-number-${index}`
+                `customer_checkout__element-order-table-item-number-${index}`
               }
               className="table-products-number"
             >
@@ -28,7 +28,7 @@ export default function TableProducts({ products, onClick }) {
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-name-${index}`
+                `customer_checkout__element-order-table-name-${index}`
               }
             >
               {e.name}
@@ -36,7 +36,7 @@ export default function TableProducts({ products, onClick }) {
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-quantity-${index}`
+                `customer_checkout__element-order-table-quantity-${index}`
               }
             >
               {e.qty}
@@ -44,7 +44,7 @@ export default function TableProducts({ products, onClick }) {
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-table-sub-total-${index}`
+                `customer_checkout__element-order-table-sub-total-${index}`
               }
             >
               {e.price}
@@ -52,7 +52,7 @@ export default function TableProducts({ products, onClick }) {
             </td>
             <td
               data-testid={
-                `customer_order_details__element-order-total-price-${index}`
+                `customer_checkout__element-order-total-price-${index}`
               }
             >
               {Number(e.total).toFixed(2)}
