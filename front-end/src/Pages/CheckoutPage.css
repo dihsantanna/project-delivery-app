@@ -3,10 +3,3 @@
   position: relative;
   width: 100vw;
 }
-
-.grade-products {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
