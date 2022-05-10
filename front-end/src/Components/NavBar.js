@@ -28,7 +28,7 @@ function NavBar({ page }) {
           disabled={ page !== 'produtos' }
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
-          onClick={ () => history.push('/orders') }
+          onClick={ () => history.push('/customer/orders') }
         >
           MEUS PEDIDOS
         </button>
