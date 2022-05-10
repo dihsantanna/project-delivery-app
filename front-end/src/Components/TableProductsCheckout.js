@@ -44,7 +44,7 @@ export default function TableProducts({ products, onClick }) {
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-sub-total-${index}`
+                `customer_checkout__element-order-table-unit-price-${index}`
               }
             >
               {e.price}
