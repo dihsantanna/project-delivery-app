@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../Components/NavBar';
 import TableProducts from '../Components/TableProductsCheckout';
+import DetailsDelivery from '../Components/DetailsDelivery';
 
 export default function CheckoutPage() {
   const [products, setProducts] = useState([]);
@@ -39,6 +40,7 @@ export default function CheckoutPage() {
         <span data-testid="customer_checkout__element-order-total-price">
           {`Total: R$ ${totalOrder()}`}
         </span>
+        <DetailsDelivery />
       </div>
     </div>
   );
