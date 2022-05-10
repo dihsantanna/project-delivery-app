@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import toBRL from '../helpers/toBRL';
 
 export default function TableProducts({ products, onClick }) {
   return (
@@ -23,8 +24,7 @@ export default function TableProducts({ products, onClick }) {
               }
               className="table-products-number"
             >
-              {index}
-
+              {index + 1}
             </td>
             <td
               data-testid={
@@ -44,23 +44,23 @@ export default function TableProducts({ products, onClick }) {
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-unit-price-${index}`
+                `customer_checkout__element-order-table-unit-price-${e.id}`
               }
             >
-              {e.price}
+              {toBRL(e.price)}
 
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-total-price-${index}`
+                `customer_checkout__element-order-table-sub-total-${e.id}`
               }
             >
-              {Number(e.total).toFixed(2)}
+              {toBRL(e.total)}
             </td>
             <td>
               <button
                 type="button"
-                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                data-testid={ `customer_checkout__element-order-table-remove-${e.id}` }
                 onClick={ () => onClick(index) }
               >
                 Remover
