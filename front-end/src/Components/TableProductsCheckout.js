@@ -44,7 +44,7 @@ export default function TableProducts({ products, onClick }) {
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-unit-price-${e.id}`
+                `customer_checkout__element-order-table-unit-price-${index}`
               }
             >
               {toBRL(e.price)}
@@ -52,7 +52,7 @@ export default function TableProducts({ products, onClick }) {
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-sub-total-${e.id}`
+                `customer_checkout__element-order-table-sub-total-${index}`
               }
             >
               {toBRL(e.total)}
@@ -60,7 +60,7 @@ export default function TableProducts({ products, onClick }) {
             <td>
               <button
                 type="button"
-                data-testid={ `customer_checkout__element-order-table-remove-${e.id}` }
+                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
                 onClick={ () => onClick(index) }
               >
                 Remover
