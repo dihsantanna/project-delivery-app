@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,11 +7,11 @@ function DetailsDelivery() {
   const [sellers, setSellers] = useState([]);
 
   const getToken = () => {
-    const token = localStorage.getItem('token');
+    const { token } = JSON.parse(localStorage.getItem('user'));
     return token;
   };
 
-  const getSeller = async () => {
+  const getSeller = useCallback(async () => {
     try {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API_URL}/sellers`,
@@ -22,14 +22,14 @@ function DetailsDelivery() {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getSeller();
-  });
+  }, [getSeller]);
 
   const toDetailsOrders = (id) => {
-    history.push(`/orders/${id}`);
+    history.push(`/customer/orders/${id}`);
   };
 
   return (
@@ -43,11 +43,12 @@ function DetailsDelivery() {
             id="select-seller"
           >
             {sellers.map((seller, index) => (
-              <option key={ index } value="select-person">{seller}</option>
+              <option key={ index } value="select-person">{seller.name}</option>
             ))}
           </select>
         </label>
         <label htmlFor="input-address">
+          Endereço:
           <input
             id="input-address"
             data-testid="customer_checkout__input-address"
@@ -55,6 +56,7 @@ function DetailsDelivery() {
           />
         </label>
         <label htmlFor="input-addressNumber">
+          Número:
           <input
             id="input-addressNumber"
             data-testid="customer_checkout__input-addressNumber"
