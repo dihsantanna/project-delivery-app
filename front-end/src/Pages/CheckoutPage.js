@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../Components/NavBar';
-import TableProducts from '../Components/TableProducts';
+import TableProducts from '../Components/TableProductsCheckout';
 
 export default function CheckoutPage() {
   const [products, setProducts] = useState([]);
