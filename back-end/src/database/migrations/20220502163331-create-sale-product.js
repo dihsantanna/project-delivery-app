@@ -5,6 +5,7 @@ module.exports = {
       saleId: {
         allowNull: false,
         primaryKey: true,
+        foreignKey: true,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
@@ -17,6 +18,7 @@ module.exports = {
       productId: {
         allowNull: false,
         primaryKey: true,
+        foreignKey: true,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
@@ -30,6 +32,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       }
+    },
+    {
+      underscored: true
     });
   },
   async down(queryInterface, _Sequelize) {
