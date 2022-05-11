@@ -1,0 +1,91 @@
+.order-card {
+  align-items: center;
+  background-color: #eaf1ef;
+  border: none;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.15rem 0.2rem 0.2rem #797676;
+  color: #001813;
+  cursor: pointer;
+  display: flex;
+  height: 164px;
+  margin-bottom: 4rem;
+  outline: none;
+  transition: ease-in-out 0.3s;
+  width: 48.5%;
+}
+
+.order-card:hover {
+  transform: scale(1.02, 1.02);
+}
+
+.order-number {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 400;
+  height: 161px;
+  justify-content: center;
+  left: 1px;
+  top: 1px;
+  width: 25.2%;
+}
+
+.order-number div {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.order-info {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  width: calc(100% - 25.2%);
+}
+
+.order-status {
+  align-items: center;
+  border-radius: 0.5rem;
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: 600;
+  height: 90%;
+  justify-content: center;
+  margin-left: 0.5rem;
+  width: 50%;
+}
+
+.pendente {
+  background-color: #ccb800bf;
+}
+
+.preparando {
+  background-color: #66cc00bf;
+}
+
+.entregue {
+  background-color: #00cc9bbf;
+}
+
+.date-price {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  justify-content: space-evenly;
+  width: 47%;
+}
+
+.date-price div {
+  align-items: center;
+  background-color: white;
+  border-radius: 00.2rem;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 600;
+  height: 38%;
+  justify-content: center;
+  width: 99%;
+}

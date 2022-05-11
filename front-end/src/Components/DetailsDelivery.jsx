@@ -54,6 +54,7 @@ function DetailsDelivery({ products }) {
       order,
       { headers: { Authorization: user.token } },
     );
+    localStorage.removeItem('carrinho');
     toDetailsOrders(response.data.id);
   };
 

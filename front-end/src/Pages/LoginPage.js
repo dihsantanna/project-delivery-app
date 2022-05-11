@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './LoginPage.css';
@@ -10,6 +10,11 @@ function LoginPage() {
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+
+  useEffect(() => {
+    const storage = localStorage.getItem('user');
+    if (storage) history.push('/customer/products');
+  });
 
   const saveToLocalStore = (userLogin) => {
     const newData = userLogin.data;

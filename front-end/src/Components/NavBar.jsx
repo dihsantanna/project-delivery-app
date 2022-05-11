@@ -25,7 +25,7 @@ function NavBar({ page }) {
         </button>
 
         <button
-          disabled={ page !== 'produtos' }
+          disabled={ page === 'orders' }
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
           onClick={ () => history.push('/customer/orders') }
