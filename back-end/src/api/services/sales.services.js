@@ -11,16 +11,16 @@ const salesToPost = (saleId, products) => {
 };
 
 const create = async (data) => {
-  const saleData = {
+  /* const saleData = {
     userId: data.userId,
     sellerId: data.sellerId,
     totalPrice: data.totalPrice,
     deliveryAddress: data.deliveryAddress,
     deliveryNumber: data.deliveryNumber,
     status: data.status,
-  };
+  }; */
   try {
-    const sale = await Sale.create(saleData, { raw: true });
+    const sale = await Sale.create(data, { raw: true });
     const saleProducts = salesToPost(sale.id, data.products);
     await SaleProduct.bulkCreate(saleProducts);
     return { code: code.CREATED, message: sale };

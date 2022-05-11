@@ -13,8 +13,8 @@ function LoginPage() {
 
   const saveToLocalStore = (userLogin) => {
     const newData = userLogin.data;
-    const { token, name, email, role } = newData;
-    const newUser = { name, email, role, token };
+    const { id, token, name, email, role } = newData;
+    const newUser = { id, name, email, role, token };
     localStorage.setItem('user', JSON.stringify(newUser));
   };
 

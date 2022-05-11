@@ -44,7 +44,7 @@ export default function CheckoutPage() {
             {toBRL(totalOrder())}
           </span>
         </div>
-        <DetailsDelivery />
+        <DetailsDelivery products={ products } />
       </div>
     </div>
   );
