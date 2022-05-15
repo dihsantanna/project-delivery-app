@@ -13,7 +13,11 @@ function LoginPage() {
 
   useEffect(() => {
     const storage = localStorage.getItem('user');
-    if (storage) history.push('/customer/products');
+    if (storage) {
+      const { role } = JSON.parse(storage);
+      if (role === 'customer') history.push('/customer/products');
+      if (role === 'seller') history.push('/seller/orders');
+    }
   });
 
   const saveToLocalStore = (userLogin) => {
@@ -34,7 +38,14 @@ function LoginPage() {
         headers: { 'Access-Control-Allow-Origin': '*' },
       });
       saveToLocalStore(user);
-      history.push('/customer/products');
+      if (user.data.role === 'customer') {
+        history.push('/customer/products');
+        return;
+      }
+      if (user.data.role === 'seller') {
+        history.push('/seller/orders');
+        return;
+      }
     } catch (error) {
       console.log(error);
       setErrorMsg('Usuario não encontrado');

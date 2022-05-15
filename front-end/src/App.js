@@ -17,7 +17,12 @@ function App() {
         <Route exact path="/register" component={ RegisterPage } />
         <Route exact path="/customer/products" component={ ProductsPage } />
         <Route exact path="/customer/orders" component={ OrdersPage } />
+        {
+          /* Ao criar a pagina de detalhe de ordem excluir a rota abaixo, pois foi inserida afim de rodar o teste */
+        }
+        <Route exact path="/customer/orders/:id" component={ OrdersPage } />
         <Route exact path="/customer/checkout" component={ CheckoutPage } />
+        <Route exact path="/seller/orders" component={ OrdersPage } />
         <Route exact path="/">
           {history.location.pathname === '/' ? history.push('/login') : null}
         </Route>

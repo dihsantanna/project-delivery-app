@@ -7,25 +7,26 @@ import toBRL from '../helpers/toBRL';
 import './OrderCard.css';
 
 export default function OrderCard({
-  sellerPage,
+  role,
   orderNumber,
   id,
   status,
   saleDate,
   totalPrice,
+  orderAddress,
 }) {
   const history = useHistory();
   return (
     <button
       type="button"
-      className="order-card"
-      onClick={ () => history.push(`/customer/orders/${id}`) }
+      className={ `order-card ${role}` }
+      onClick={ () => history.push(`/${role}/orders/${id}`) }
     >
       <div className="order-number">
         Pedido
         <div
           data-testid={
-            `${sellerPage ? 'seller' : 'customer'}_orders__element-order-id-${id}`
+            `${role}_orders__element-order-id-${id}`
           }
         >
           {numberTransform(orderNumber)}
@@ -35,7 +36,7 @@ export default function OrderCard({
         <div
           className={ `order-status ${status.toLowerCase()}` }
           data-testid={
-            `${sellerPage ? 'seller' : 'customer'}_orders__element-delivery-status-${id}`
+            `${role}_orders__element-delivery-status-${id}`
           }
         >
           { status }
@@ -43,7 +44,7 @@ export default function OrderCard({
         <div className="date-price">
           <div
             data-testid={
-              `${sellerPage ? 'seller' : 'customer'}_orders__element-order-date-${id}`
+              `${role}_orders__element-order-date-${id}`
             }
           >
             {moment(saleDate).locale('pt-br').format('DD/MM/YYYY')}
@@ -52,7 +53,7 @@ export default function OrderCard({
             {'R$ '}
             <span
               data-testid={
-                `${sellerPage ? 'seller' : 'customer'}_orders__element-card-price-${id}`
+                `${role}_orders__element-card-price-${id}`
               }
             >
               { toBRL(totalPrice) }
@@ -60,12 +61,13 @@ export default function OrderCard({
           </div>
         </div>
         {
-          sellerPage ? (
-            <div
-              className="order-address"
-              data-testid={ `seller_orders__element-card-address-${id}` }
-            >
-              {orderAddress}
+          role === 'seller' ? (
+            <div className="order-address">
+              <div
+                data-testid={ `seller_orders__element-card-address-${id}` }
+              >
+                { `Rua ${orderAddress}` }
+              </div>
             </div>
           ) : null
         }
@@ -75,14 +77,11 @@ export default function OrderCard({
 }
 
 OrderCard.propTypes = {
-  sellerPage: PropTypes.bool,
+  role: PropTypes.string.isRequired,
   orderNumber: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   saleDate: PropTypes.string.isRequired,
   totalPrice: PropTypes.string.isRequired,
-};
-
-OrderCard.defaultProps = {
-  sellerPage: false,
+  orderAddress: PropTypes.string.isRequired,
 };
