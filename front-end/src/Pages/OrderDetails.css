@@ -1,0 +1,104 @@
+.OrderDetails {
+  margin: 50px;
+}
+
+.order-details-header {
+  align-items: center;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+
+.order-details-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.order-details-header-btn {
+  background-color: #036b52;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.order-details-header-status {
+  border-radius: 5px;
+  padding: 8px;
+  text-align: center;
+  width: 10rem;
+}
+
+.status__entregue {
+  background-color: #2fc18c;
+  font-weight: 700;
+}
+
+.status__pendente {
+  background-color: rgb(218, 212, 32);
+  font-weight: 700;
+}
+
+.status__preparando {
+  background-color: greenyellow;
+  font-weight: 700;
+}
+
+.order-details-table-header {
+  font-weight: inherit;
+  height: 2rem;
+}
+
+.order-details-table-row {
+  height: 3rem;
+  text-align: center;
+}
+
+.order-details-table-row-number {
+  background-color: #2fc18c;
+  border-radius: 10px 0 0 10px;
+  font-weight: 700;
+  width: 3rem;
+}
+
+.order-details-table-row-name {
+  background-color: whitesmoke;
+  padding: 0 10px;
+  text-align: left;
+}
+
+.order-details-table-row-quantity {
+  background-color: #036b52;
+  color: white;
+  width: 7rem;
+}
+
+.order-details-table-row-valor {
+  background-color: #421981;
+  color: white;
+  width: 7rem;
+}
+
+
+.order-details-table-row-total {
+  background-color: #056cf9;
+  border-radius: 0 10px 10px 0;
+  color: white;
+  width: 7rem;
+}
+
+.order-details-total-price {
+  background-color: #036b52;
+  border-radius: 5px;
+  color: white;
+  font-size: x-large;
+  height: 2rem;
+  margin-left: 75%;
+  margin-top: 35px;
+  padding: 9px;
+  padding-right: 20px;
+  text-align: center;
+  width: 15rem;
+}

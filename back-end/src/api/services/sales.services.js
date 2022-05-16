@@ -47,6 +47,7 @@ const getAllByUserId = async (userId) => {
       where: { userId },
       include: [
         { model: User, as: 'user_sale', attributes: ['name'] },
+        { model: User, as: 'seller_sale', attributes: ['name'] },
         {
           model: SaleProduct,
           as: 'sale_products',
