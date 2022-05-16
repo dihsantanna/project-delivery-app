@@ -8,6 +8,7 @@ import ProductsPage from './Pages/ProductsPage';
 import OrdersPage from './Pages/OrdersPage';
 import CheckoutPage from './Pages/CheckoutPage';
 import OrderDetails from './Pages/OrderDetails';
+import OrderDetailsSeller from './Pages/OrderDetails-Seller';
 
 function App() {
   const history = useHistory();
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/customer/checkout" component={ CheckoutPage } />
         <Route exact path="/customer/orders" component={ OrdersPage } />
         <Route exact path="/customer/orders/:id" component={ OrderDetails } />
+        <Route exact path="/seller/orders/:id" component={ OrderDetailsSeller } />
         <Route exact path="/">
           {history.location.pathname === '/' ? history.push('/login') : null}
         </Route>
