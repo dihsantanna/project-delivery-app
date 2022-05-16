@@ -1,3 +1,5 @@
+const { StatusCodes } = require('http-status-codes');
+
 const productsMock = [
   {
     "id": 1,
@@ -67,4 +69,18 @@ const productsMock = [
   }
 ];
 
-module.exports = productsMock;
+const productsServicesMock = {
+  code: StatusCodes.OK,
+  message: productsMock,
+};
+
+const productsServicesIdMock = {
+  code: StatusCodes.OK,
+  message: productsMock[0],
+}
+
+module.exports = {
+  productsServicesMock,
+  productsMock,
+  productsServicesIdMock,
+};
