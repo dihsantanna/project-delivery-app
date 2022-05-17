@@ -32,17 +32,17 @@
 }
 
 .status__entregue {
-  background-color: #2fc18c;
+  background-color: #00cc9bbf;
   font-weight: 700;
 }
 
 .status__pendente {
-  background-color: rgb(218, 212, 32);
+  background-color: #ccb800bf;
   font-weight: 700;
 }
 
 .status__preparando {
-  background-color: greenyellow;
+  background-color: #66cc00bf;
   font-weight: 700;
 }
 

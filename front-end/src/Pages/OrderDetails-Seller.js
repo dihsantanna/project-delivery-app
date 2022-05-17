@@ -1,57 +1,52 @@
 import axios from 'axios';
 import moment from 'moment';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../Components/NavBar';
 import toBRL from '../helpers/toBRL';
 import './OrderDetails.css';
 
-export default function OrderDetails() {
+export default function OrderDetailsSeller() {
   const history = useHistory();
 
   const dataTest = {
-    seller: 'customer_order_details__element-order-details-label-seller-name',
-    orderDate: 'customer_order_details__element-order-details-label-order-date',
-    orderStatus: 'customer_order_details__element-order-details-label-delivery-status',
+    deliveryStatus: 'seller_order_details__element-order-details-label-delivery-status',
   };
 
-  const [order, setOrder] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [order, setOrder] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const filterOrders = (orders, id) => {
-    const teste = orders.filter((element) => element.id === Number(id));
-    console.log(teste);
-    setOrder(teste);
+    const data = orders.filter((element) => element.id === Number(id));
+    setOrder(data);
   };
 
   useEffect(() => {
     const { id, token } = JSON.parse(localStorage.getItem('user'));
     const idParams = history.location.pathname.split('/')[3];
-    if (history.location.pathname.includes('customer')) {
-      axios.get(`http://localhost:3001/sales?userId=${id}`, {
-        headers: { authorization: token },
-      }).then((res) => {
-        console.log(res.data);
-        filterOrders(res.data, idParams);
-        setLoading(true);
-      });
-    }
-  }, [history]);
+    axios.get(`http://localhost:3001/sales?sellerId=${id}`, {
+      headers: { authorization: token },
+    }).then((res) => {
+      console.log(res.data);
+      filterOrders(res.data, idParams);
+      setLoading(true);
+    });
+  }, [history, loading]);
 
-  const updateStatus = async () => {
-    console.log('clicou');
+  const updateStatus = async (e) => {
+    const { name } = e.target;
     const { id, token } = JSON.parse(localStorage.getItem('user'));
     const idParams = history.location.pathname.split('/')[3];
     await axios.patch(`http://localhost:3001/sales/${order[0].id}`, {
-      status: 'Entregue',
+      status: name,
     }, {
       headers: { authorization: token },
     });
-    await axios.get(`http://localhost:3001/sales?userId=${id}`, {
+    await axios.get(`http://localhost:3001/sales?sellerId=${id}`, {
       headers: { authorization: token },
     }).then((res) => {
       filterOrders(res.data, idParams);
-      setLoading(true);
+      setLoading(false);
     });
   };
 
@@ -65,25 +60,19 @@ export default function OrderDetails() {
           <>
             <section className="order-details-header">
               <span
-                data-testid="customer_order_details__element-order-details-label-order-id"
+                data-testid="seller_order_details__element-order-details-label-order-id"
                 className="order-details-header-number"
               >
                 {`Nº ${order[0].id}`}
               </span>
               <span
-                data-testid={ dataTest.seller }
-                className="order-details-header-seller-name"
-              >
-                {`${order[0].seller_sale.name}`}
-              </span>
-              <span
-                data-testid={ dataTest.orderDate }
+                data-testid="seller_order_details__element-order-details-label-order-date"
                 className="order-details-header-date"
               >
                 {moment(order[0].saleDate).format('DD/MM/YYYY')}
               </span>
               <span
-                data-testid={ dataTest.orderStatus }
+                data-testid={ dataTest.deliveryStatus }
                 className={
                   `order-details-header-status status__${order[0].status.toLowerCase()}`
                 }
@@ -91,15 +80,32 @@ export default function OrderDetails() {
                 {order[0].status}
               </span>
               <button
-                onClick={ () => updateStatus() }
+                onClick={ (e) => updateStatus(e) }
                 type="button"
+                name="Preparando"
                 className="order-details-header-btn"
-                data-testid="customer_order_details__button-delivery-check"
+                data-testid="seller_order_details__button-preparing-check"
                 disabled={
-                  !order[0].status.includes('Em Trânsito')
+                  order[0].status === 'Entregue'
+                  || order[0].status === 'Preparando'
+                  || order[0].status === 'Em Trânsito'
                 }
               >
-                MARCAR COMO ENTREGUE
+                PREPARAR PEDIDO
+              </button>
+              <button
+                onClick={ (e) => updateStatus(e) }
+                type="button"
+                name="Em Trânsito"
+                className="order-details-header-btn"
+                data-testid="seller_order_details__button-dispatch-check"
+                disabled={
+                  order[0].status === 'Entregue'
+                  || order[0].status === 'Em Trânsito'
+                  || order[0].status === 'Pendente'
+                }
+              >
+                SAIU PARA ENTREGA
               </button>
             </section>
             <table className="order-details-table">
@@ -117,7 +123,7 @@ export default function OrderDetails() {
                   <tr key={ `Row ${idx}` } className="order-details-table-row">
                     <td
                       data-testid={
-                        `customer_order_details__element-order-table-item-number-${idx}`
+                        `seller_order_details__element-order-table-item-number-${idx}`
                       }
                       className="order-details-table-row-number"
                     >
@@ -126,7 +132,7 @@ export default function OrderDetails() {
                     <td
                       className="order-details-table-row-name"
                       data-testid={
-                        `customer_order_details__element-order-table-name-${idx}`
+                        `seller_order_details__element-order-table-name-${idx}`
                       }
                     >
                       {e.product_sale.name}
@@ -134,7 +140,7 @@ export default function OrderDetails() {
                     <td
                       className="order-details-table-row-quantity"
                       data-testid={
-                        `customer_order_details__element-order-table-quantity-${idx}`
+                        `seller_order_details__element-order-table-quantity-${idx}`
                       }
                     >
                       {e.quantity}
@@ -142,7 +148,7 @@ export default function OrderDetails() {
                     <td
                       className="order-details-table-row-valor"
                       data-testid={
-                        `customer_order_details__element-order-table-sub-total-${idx}`
+                        `seller_order_details__element-order-table-unit-price-${idx}`
                       }
                     >
                       {`R$${toBRL(e.product_sale.price)}`}
@@ -150,7 +156,7 @@ export default function OrderDetails() {
                     <td
                       className="order-details-table-row-total"
                       data-testid={
-                        `customer_order_details__element-order-total-price-${idx}`
+                        `seller_order_details__element-order-table-sub-total-${idx}`
                       }
                     >
                       {`${toBRL(e.product_sale.price * e.quantity)}`}
@@ -160,7 +166,7 @@ export default function OrderDetails() {
               </tbody>
             </table>
             <section
-              data-testid="customer_order_details__element-order-total-price"
+              data-testid="seller_order_details__element-order-total-price"
               className="order-details-total-price"
             >
               {toBRL(order[0].totalPrice)}
