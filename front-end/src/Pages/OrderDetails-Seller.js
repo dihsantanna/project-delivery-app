@@ -27,7 +27,7 @@ export default function OrderDetailsSeller() {
       filterOrders(res.data, idParams);
       setLoading(true);
     });
-  }, [history]);
+  }, [history, loading]);
 
   const updateStatus = async (e) => {
     const { name } = e.target;
@@ -38,11 +38,11 @@ export default function OrderDetailsSeller() {
     }, {
       headers: { authorization: token },
     });
-    await axios.get(`http://localhost:3001/sales?userId=${id}`, {
+    await axios.get(`http://localhost:3001/sales?sellerId=${id}`, {
       headers: { authorization: token },
     }).then((res) => {
       filterOrders(res.data, idParams);
-      setLoading(true);
+      setLoading(false);
     });
   };
 
@@ -56,25 +56,19 @@ export default function OrderDetailsSeller() {
           <>
             <section className="order-details-header">
               <span
-                data-testid=""
+                data-testid="seller_order_details__element-order-details-label-order-id"
                 className="order-details-header-number"
               >
                 {`Nº ${order[0].id}`}
               </span>
               <span
-                data-testid=""
-                className="order-details-header-seller-name"
-              >
-                {`${order[0].seller_sale.name}`}
-              </span>
-              <span
-                data-testid=""
+                data-testid="seller_order_details__element-order-details-label-order-date"
                 className="order-details-header-date"
               >
                 {moment(order[0].saleDate).format('DD/MM/YYYY')}
               </span>
               <span
-                data-testid=""
+                data-testid="seller_order_details__element-order-details-label-delivery-status"
                 className={
                   `order-details-header-status status__${order[0].status.toLowerCase()}`
                 }
@@ -86,7 +80,7 @@ export default function OrderDetailsSeller() {
                 type="button"
                 name="Preparando"
                 className="order-details-header-btn"
-                data-testid=""
+                data-testid="seller_order_details__button-preparing-check"
                 disabled={
                   order[0].status === 'Entregue'
                   || order[0].status === 'Preparando'
@@ -100,7 +94,7 @@ export default function OrderDetailsSeller() {
                 type="button"
                 name="Em Trânsito"
                 className="order-details-header-btn"
-                data-testid=""
+                data-testid="seller_order_details__button-dispatch-check"
                 disabled={
                   order[0].status === 'Entregue'
                   || order[0].status === 'Em Trânsito'
@@ -124,32 +118,42 @@ export default function OrderDetailsSeller() {
                 {order[0].sale_products.map((e, idx) => (
                   <tr key={ `Row ${idx}` } className="order-details-table-row">
                     <td
-                      data-testid=""
+                      data-testid={
+                        `seller_order_details__element-order-table-item-number-${idx}`
+                      }
                       className="order-details-table-row-number"
                     >
                       {idx + 1}
                     </td>
                     <td
                       className="order-details-table-row-name"
-                      data-testid=""
+                      data-testid={
+                        `seller_order_details__element-order-table-name-${idx}`
+                      }
                     >
                       {e.product_sale.name}
                     </td>
                     <td
                       className="order-details-table-row-quantity"
-                      data-testid=""
+                      data-testid={
+                        `seller_order_details__element-order-table-quantity-${idx}`
+                      }
                     >
                       {e.quantity}
                     </td>
                     <td
                       className="order-details-table-row-valor"
-                      data-testid=""
+                      data-testid={
+                        `seller_order_details__element-order-table-unit-price-${idx}`
+                      }
                     >
                       {`R$${toBRL(e.product_sale.price)}`}
                     </td>
                     <td
                       className="order-details-table-row-total"
-                      data-testid=""
+                      data-testid={
+                        `seller_order_details__element-order-table-sub-total-${idx}`
+                      }
                     >
                       {`${toBRL(e.product_sale.price * e.quantity)}`}
                     </td>
@@ -158,7 +162,7 @@ export default function OrderDetailsSeller() {
               </tbody>
             </table>
             <section
-              data-testid=""
+              data-testid="seller_order_details__element-order-total-price"
               className="order-details-total-price"
             >
               {toBRL(order[0].totalPrice)}
