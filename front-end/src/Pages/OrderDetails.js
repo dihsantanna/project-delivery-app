@@ -96,7 +96,7 @@ export default function OrderDetails() {
                 className="order-details-header-btn"
                 data-testid="customer_order_details__button-delivery-check"
                 disabled={
-                  order[0].status === 'Entregue' || order[0].status === 'Pendente'
+                  !order[0].status.includes('Em Trânsito')
                 }
               >
                 MARCAR COMO ENTREGUE
