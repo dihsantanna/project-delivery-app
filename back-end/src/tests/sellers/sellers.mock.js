@@ -1,3 +1,5 @@
+const { StatusCodes } = require('http-status-codes');
+
 const sellersMock = [
   {
     id: 2,
@@ -8,6 +10,12 @@ const sellersMock = [
   }
 ];
 
+const sellersServicesMock = {
+  code: StatusCodes.OK,
+  message: sellersMock,
+};
+
 module.exports = {
   sellersMock,
+  sellersServicesMock,
 };
