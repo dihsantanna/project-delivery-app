@@ -21,6 +21,7 @@ function App() {
         <Route exact path="/customer/checkout" component={ CheckoutPage } />
         <Route exact path="/customer/orders" component={ OrdersPage } />
         <Route exact path="/customer/orders/:id" component={ OrderDetails } />
+        <Route exact path="/seller/orders" component={ OrdersPage } />
         <Route exact path="/seller/orders/:id" component={ OrderDetailsSeller } />
         <Route exact path="/">
           {history.location.pathname === '/' ? history.push('/login') : null}
