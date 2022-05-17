@@ -9,6 +9,10 @@ import './OrderDetails.css';
 export default function OrderDetailsSeller() {
   const history = useHistory();
 
+  const dataTest = {
+    deliveryStatus: 'seller_order_details__element-order-details-label-delivery-status',
+  };
+
   const [order, setOrder] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -68,7 +72,7 @@ export default function OrderDetailsSeller() {
                 {moment(order[0].saleDate).format('DD/MM/YYYY')}
               </span>
               <span
-                data-testid="seller_order_details__element-order-details-label-delivery-status"
+                data-testid={ dataTest.deliveryStatus }
                 className={
                   `order-details-header-status status__${order[0].status.toLowerCase()}`
                 }
