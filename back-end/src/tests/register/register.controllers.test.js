@@ -26,8 +26,7 @@ describe('Register Controllers tests', () => {
     });
 
     it('should return code 201', async () => {
-      const result = await createUser(request, response);
-      console.log(result);
+      await createUser(request, response);
       expect(response.status.calledWith(StatusCodes.CREATED)).to.be.true;
     });
   });

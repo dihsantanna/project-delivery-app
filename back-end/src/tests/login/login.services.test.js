@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const md5 = require('md5');
 
 const { User } = require('../../database/models');
-const login = require('../../api/services/login.services');
+const loginService = require('../../api/services/login.services');
 const { StatusCodes } = require('http-status-codes');
 const Mock = require('./login.mock');
 
@@ -19,7 +19,7 @@ describe('Login Service Tests', () => {
     });
 
     it('should return a login', async () => {
-      const result = await login(Mock.loginPayload);
+      const result = await loginService.login(Mock.loginPayload);
       expect(result.code).to.be.equal(StatusCodes.OK);
     });
   });
@@ -33,7 +33,7 @@ describe('Login Service Tests', () => {
     });
 
     it('should return a error', async () => {
-      const result = await login(Mock.loginPayload);
+      const result = await loginService.login(Mock.loginPayload);
       expect(result.code).to.be.equal(StatusCodes.NOT_FOUND);
     });
   });

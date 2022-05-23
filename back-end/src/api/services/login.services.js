@@ -27,4 +27,6 @@ const login = async ({ email, password }) => {
   return { code: code.OK, message: { ...response, token: jwt.sign(response, secret) } };
 };
 
-module.exports = login;
+module.exports = {
+  login,
+};
