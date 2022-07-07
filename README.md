@@ -84,9 +84,9 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
 
   1. Clone o repositório
 
-  - Use o comando: `git clone git@github.com:tryber/sd-014-b-project-delivery-app.git`.
+  - Use o comando: `git clone git@github.com:dihsantanna/project-delivery-app.git`.
   - Entre na pasta do repositório que você acabou de clonar:
-    - `cd sd-014-b-project-delivery-app`
+    - `cd project-delivery-app`
   - Vá para a branch do seu grupo, com `git checkout main-group-XX && git pull`, onde `XX` é o número do seu grupo. Exemplos: `main-group-1`, `main-group-22`.
 
   2. Instale as dependências
