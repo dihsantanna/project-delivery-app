@@ -285,35 +285,6 @@ describe(requirement(1), () => {
 
 </details>
 
-<details>
-  <summary>
-    <strong>🤲 Escrevendo seus testes</strong>
-  </summary>
-
-  - Escreva testes unitários e sinta-se livre para alterar a UI. Contudo, respeite os atributos `data-testid`, pois eles serão usados na correção do projeto.
-
-</details>
-
-<details>
-  <summary>
-    <strong>🗣 Nos dê feedbacks sobre o projeto!</strong>
-  </summary><br>
-
-  Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. **Leva menos de 3 minutos!**
-
-  Link: [Formulário de avaliação do projeto](https://be-trybe.typeform.com/to/ZTeR4IbH)
-
-</details>
-
-<details>
-  <summary>
-    <strong>🗂 Compartilhe seu portfólio!</strong>
-  </summary><br>
-
-  Você sabia que o LinkedIn é a principal rede social profissional e compartilhar o seu aprendizado lá é muito importante para quem deseja construir uma carreira de sucesso? Compartilhe esse projeto no seu LinkedIn, marque o perfil da Trybe (@trybe) e mostre para a sua rede toda a sua evolução.
-
-</details>
-
 
 # Requisitos
 
